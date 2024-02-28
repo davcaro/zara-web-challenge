@@ -1,1 +1,1 @@
-export * from './LogoNavLink.tsx';
+export * from './LogoNavLink';
