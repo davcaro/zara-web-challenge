@@ -1,10 +1,9 @@
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
-import App from '../App.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <h1>Home</h1>,
   },
   {
     path: '*',
