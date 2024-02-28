@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import * as media from '@/theme/media-queries.ts';
+import { Text } from '@/components/Text';
 
 export const Container = styled.li`
   display: flex;
@@ -48,7 +49,6 @@ export const CharacterInfo = styled.section`
   }
 `;
 
-export const CharacterName = styled.span`
-  font-size: 1.4rem;
+export const CharacterName = styled(Text)`
   color: var(--colors-white);
 `;

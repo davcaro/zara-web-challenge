@@ -6,7 +6,7 @@ export const CharacterCard: FC = () => (
     <Thumbnail src='https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg' alt='3-D Man' />
     <Divider />
     <CharacterInfo>
-      <CharacterName>3-D Man</CharacterName>
+      <CharacterName level='p2'>3-D Man</CharacterName>
     </CharacterInfo>
   </Container>
 );
