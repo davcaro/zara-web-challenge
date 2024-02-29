@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import * as media from '@/theme/media-queries.ts';
+import * as media from '@/theme/media-queries';
 
 export const StyledHeader = styled.header`
   width: 100%;
