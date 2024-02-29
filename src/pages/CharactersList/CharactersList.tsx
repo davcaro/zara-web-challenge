@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
 import { useFetchCharacters } from '@/hooks/api';
 import { CharactersGrid } from './CharactersGrid';
-import { Container } from './CharactersList.styles';
+import { Container, StyledSearchBar } from './CharactersList.styles';
 
 const PAGE_SIZE = 50;
 
@@ -18,6 +18,7 @@ export const CharactersList: FC = () => {
       </Helmet>
 
       <Container>
+        <StyledSearchBar />
         {isSuccess && <CharactersGrid characters={characters.results} />}
       </Container>
     </>

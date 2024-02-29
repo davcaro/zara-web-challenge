@@ -1,4 +1,8 @@
 {
   "app-title": "Marvel Characters",
-  "marvel-logo": "Marvel logo"
+  "marvel-logo": "Marvel logo",
+  "forms": {
+    "search": "Search",
+    "search-character": "Search a character..."
+  }
 }
