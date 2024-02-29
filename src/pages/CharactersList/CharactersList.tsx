@@ -1,10 +1,15 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from 'react-helmet-async';
-import { CharacterCard } from './CharacterCard';
+import { useFetchCharacters } from '@/hooks/api';
+import { CharactersGrid } from './CharactersGrid';
+import { Container } from './CharactersList.styles';
+
+const PAGE_SIZE = 50;
 
 export const CharactersList: FC = () => {
   const { t } = useTranslation('common');
+  const { data: characters, isSuccess } = useFetchCharacters({ limit: PAGE_SIZE });
 
   return (
     <>
@@ -12,11 +17,9 @@ export const CharactersList: FC = () => {
         <title>{t('app-title')}</title>
       </Helmet>
 
-      <h1>{t('app-title')}</h1>
-
-      <ul>
-        <CharacterCard />
-      </ul>
+      <Container>
+        {isSuccess && <CharactersGrid characters={characters.results} />}
+      </Container>
     </>
   );
 };

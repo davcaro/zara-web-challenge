@@ -1,37 +1,31 @@
 import styled from 'styled-components';
-import * as media from '@/theme/media-queries.ts';
 import { Text } from '@/components/Text';
 
 export const Container = styled.li`
   display: flex;
   flex-direction: column;
-  width: 18.9rem;
-
-  ${media.lteSmallMedia} {
-    width: 17.2rem;
-  }
 `;
 
 export const Thumbnail = styled.img`
-  width: 100%;
   height: 19rem;
   object-fit: cover;
 `;
 
 export const Divider = styled.hr`
-  width: 100%;
   height: 0.5rem;
-  margin: 0;
-  border: 0;
+  margin: var(--spacing-none);
+  border: var(--spacing-none);
   background-color: var(--colors-marvel-red);
 `;
 
 export const CharacterInfo = styled.section`
+  display: flex;
+  align-items: center;
+  flex: 1;
   position: relative;
-  box-sizing: border-box;
   background-color: var(--colors-black);
 
-  width: 100%;
+  box-sizing: border-box;
   padding: var(--spacing-16);
   padding-bottom: var(--spacing-24);
 

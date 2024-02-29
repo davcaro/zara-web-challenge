@@ -5,12 +5,12 @@ export interface CharactersListResponse {
   attributionText: string;
   code: number;
   copyright: string;
-  data: Character;
+  data: CharacterList;
   etag: string;
   status: string;
 }
 
-export interface Character extends Pagination {
+export interface CharacterList extends Pagination {
   results: Character[];
 }
 
