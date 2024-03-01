@@ -1,10 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { request } from '@/lib/request';
 import { API_ENDPOINTS } from '@/constants';
 import { CharactersListResponse } from '@/types';
 
-export interface FetchCharactersParams {
-  nameStartsWith?: string;
+interface FetchCharactersParams {
+  nameStartsWith?: string | null;
   limit?: number;
 }
 
@@ -17,4 +17,5 @@ export const useFetchCharacters = (params?: FetchCharactersParams) =>
     queryKey: [API_ENDPOINTS.CHARACTERS, params],
     queryFn: () => fetchCharacters(params),
     select: ({ data: listResponse }) => listResponse.data,
+    placeholderData: keepPreviousData,
   });
