@@ -35,7 +35,7 @@ export const CharactersList: FC = () => {
       </Helmet>
 
       <Container>
-        <StyledSearchBar value={searchQuery} onSearch={handleSearch} />
+        <StyledSearchBar value={searchQuery} onSearch={handleSearch} results={characters?.count} />
         {isSuccess && <CharactersGrid characters={characters.results} />}
       </Container>
     </>
