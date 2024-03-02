@@ -1,18 +1,6 @@
-import { Pagination } from '@/types';
+import { ListResponse, ResourcesCollection } from '@/types';
 
-export interface CharactersListResponse {
-  attributionHTML: string;
-  attributionText: string;
-  code: number;
-  copyright: string;
-  data: CharacterList;
-  etag: string;
-  status: string;
-}
-
-export interface CharacterList extends Pagination {
-  results: Character[];
-}
+export type CharactersListResponse = ListResponse<Character>;
 
 export interface Character {
   id: number;
@@ -28,25 +16,12 @@ export interface Character {
   urls: Url[];
 }
 
-export interface ResourcesCollection {
-  available: number;
-  collectionURI: string;
-  items: Resource[];
-  returned: number;
-}
-
-export interface Resource {
-  resourceURI: string;
-  name: string;
-  type?: string;
-}
-
-export interface Thumbnail {
+interface Thumbnail {
   path: string;
   extension: string;
 }
 
-export interface Url {
+interface Url {
   type: string;
   url: string;
 }
