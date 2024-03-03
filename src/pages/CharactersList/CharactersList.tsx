@@ -14,8 +14,9 @@ export const CharactersList: FC = () => {
   const [searchParams, setSearchParameters] = useSearchParams();
   const searchQuery = searchParams.get(SEARCH_QUERY_PARAM) ?? '';
   const [search, setSearch] = useState<string>(searchQuery);
+  const trimmedSearch = search.trim();
   const { data: characters, isSuccess } = useFetchCharacters({
-    nameStartsWith: search.trim() || null,
+    nameStartsWith: trimmedSearch || null,
     limit: PAGE_SIZE,
   });
 
@@ -31,7 +32,7 @@ export const CharactersList: FC = () => {
   return (
     <>
       <Helmet>
-        <title>{t('app-title')}</title>
+        <title>{trimmedSearch ? t('prefixed-app-title', { prefix: trimmedSearch }) : t('app-title')}</title>
       </Helmet>
 
       <Container>

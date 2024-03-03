@@ -16,9 +16,7 @@ export const CharacterDetails: FC = () => {
     return (
       <>
         <Helmet>
-          <title>
-            {character.name} - {t('app-title')}
-          </title>
+          <title>{t('prefixed-app-title', { prefix: character?.name })}</title>
         </Helmet>
 
         <CharacterInfo character={character} />

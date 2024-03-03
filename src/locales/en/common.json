@@ -1,4 +1,5 @@
 {
   "app-title": "Marvel Characters",
+  "prefixed-app-title": "{{prefix}} - $t(app-title)",
   "marvel-logo": "Marvel logo"
 }
