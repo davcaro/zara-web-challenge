@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AppRoutes } from '@/routes';
 import * as locales from '@/locales';
+import { FavoriteCharactersProvider } from '@/stores/FavoriteCharactersContext';
 import './theme/global.css';
 
 const i18nOptions: InitOptions = {
@@ -27,7 +28,10 @@ const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools />
-      <AppRoutes />
+
+      <FavoriteCharactersProvider>
+        <AppRoutes />
+      </FavoriteCharactersProvider>
     </QueryClientProvider>
   </HelmetProvider>
 );
