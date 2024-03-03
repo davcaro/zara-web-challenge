@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import * as media from '@/theme/media-queries';
-import { SearchBar } from './SearchBar';
+import { SearchBar } from '@/components/SearchBar';
 
 export const Container = styled.main`
   padding: var(--spacing-48);

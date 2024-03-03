@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useFetchCharacters } from '@/hooks/api';
-import { CharactersGrid } from './CharactersGrid';
+import { CharactersGrid } from '@/components/CharactersGrid';
 import { Container, StyledSearchBar } from './CharactersList.styles';
 
 const PAGE_SIZE = 50;
