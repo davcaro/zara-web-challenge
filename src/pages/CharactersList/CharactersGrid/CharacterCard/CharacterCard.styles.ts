@@ -22,7 +22,9 @@ export const Divider = styled.hr`
 
 export const CharacterInfo = styled.section`
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  gap: var(--spacing-12);
   flex: 1;
   position: relative;
   background-color: var(--colors-black);

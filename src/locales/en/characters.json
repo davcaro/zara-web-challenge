@@ -1,3 +1,6 @@
 {
-  "comics": "Comics"
+  "comics": "Comics",
+  "favorite-characters": "Favorite characters",
+  "add-favorite": "Add to favorites",
+  "remove-favorite": "Remove from favorites"
 }
