@@ -1,14 +1,30 @@
 import { FC } from 'react';
 import { useParams } from 'react-router-dom';
-import { useFetchCharacterDetails } from '@/hooks/api';
+import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
+import { useFetchCharacterComics, useFetchCharacterDetails } from '@/hooks/api';
 import { CharacterInfo } from './CharacterInfo';
+import { CharacterComics } from './CharacterComics';
 
 export const CharacterDetails: FC = () => {
+  const { t } = useTranslation('common');
   const { id } = useParams();
-  const { data: character, isSuccess } = useFetchCharacterDetails(id);
+  const { data: character, isSuccess: isSuccessCharacter } = useFetchCharacterDetails(id);
+  const { data: comics, isSuccess: isSuccessComics } = useFetchCharacterComics(id);
 
-  if (isSuccess) {
-    return <CharacterInfo character={character} />;
+  if (isSuccessCharacter) {
+    return (
+      <>
+        <Helmet>
+          <title>
+            {character.name} - {t('app-title')}
+          </title>
+        </Helmet>
+
+        <CharacterInfo character={character} />
+        {isSuccessComics && <CharacterComics comics={comics} />}
+      </>
+    );
   }
 
   return null;

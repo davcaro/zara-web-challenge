@@ -20,6 +20,10 @@ export default {
     font-size: 3.2rem;
     font-weight: ${weight.bold};
   `,
+  h3: css`
+    font-size: 2.4rem;
+    font-weight: ${weight.bold};
+  `,
 
   // Body
   p1: css`
