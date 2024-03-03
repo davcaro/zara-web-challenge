@@ -5,11 +5,14 @@ import { Text } from '@/components/Text';
 
 export const StyledHeader = styled.header`
   display: flex;
-  justify-content: center;
   width: 100%;
   position: relative;
   overflow: hidden;
   background-color: var(--colors-black);
+
+  ${media.gteMediumMedia} {
+    justify-content: center;
+  }
 
   /* Notched corner */
   &:after {
@@ -28,6 +31,7 @@ export const StyledHeader = styled.header`
 export const Container = styled.header`
   display: flex;
   align-items: center;
+  width: 100%;
 
   ${media.gteMediumMedia} {
     max-width: 96rem;
@@ -62,6 +66,8 @@ export const Resume = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--spacing-24);
+  width: 100%;
+  box-sizing: border-box;
   color: var(--colors-white);
 
   ${media.lteExtraSmallMedia} {
