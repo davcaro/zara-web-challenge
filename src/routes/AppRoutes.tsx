@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import { Layout } from '@/components/Layout';
 import { CharactersList } from '@/pages/CharactersList';
+import { FavoriteCharactersList } from '@/pages/FavoriteCharactersList';
 import { CharacterDetails } from '@/pages/CharacterDetails';
 
 const router = createBrowserRouter([
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <CharactersList />,
+      },
+      {
+        path: '/favorites',
+        element: <FavoriteCharactersList />,
       },
       {
         path: '/characters/:id',
