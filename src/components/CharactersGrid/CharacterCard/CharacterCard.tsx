@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useFavoriteCharacters } from '@/stores/FavoriteCharactersContext';
 import { Character } from '@/types';
 import { HeartFilledIcon, HeartOutlinedIcon } from '@/assets';
-import { IconButton } from '@/components/IconButton';
 import { ICON_SIZE } from '@/components/Icon';
-import { CharacterInfo, CharacterName, Divider, StyledLink, Thumbnail } from './CharacterCard.styles';
+import { CharacterInfo, CharacterName, Divider, StyledIconButton, StyledLink, Thumbnail } from './CharacterCard.styles';
 
 interface PropTypes {
   character: Character;
@@ -21,7 +20,7 @@ export const CharacterCard: FC<PropTypes> = ({ character }) => {
       <Divider />
       <CharacterInfo>
         <CharacterName level='p2'>{character.name}</CharacterName>
-        <IconButton
+        <StyledIconButton
           icon={isFavorite(character.id) ? HeartFilledIcon : HeartOutlinedIcon}
           alt={isFavorite(character.id) ? t('remove-favorite') : t('add-favorite')}
           size={ICON_SIZE.SMALL}

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Text } from '@/components/Text';
+import { IconButton } from '@/components/IconButton';
 
 export const StyledLink = styled(Link)`
   display: flex;
@@ -30,8 +31,7 @@ export const CharacterInfo = styled.section`
   background-color: var(--colors-black);
 
   box-sizing: border-box;
-  padding: var(--spacing-16);
-  padding-bottom: var(--spacing-24);
+  padding: var(--spacing-16) var(--spacing-8) var(--spacing-24) var(--spacing-16);
 
   /* Notched corner */
   &:after {
@@ -49,4 +49,8 @@ export const CharacterInfo = styled.section`
 
 export const CharacterName = styled(Text)`
   color: var(--colors-white);
+`;
+
+export const StyledIconButton = styled(IconButton)`
+  padding: var(--spacing-8);
 `;

@@ -7,8 +7,8 @@ export const StyledButton = styled.button`
 
   border: none;
   outline: none;
-  padding: 0;
-  margin: 0;
+  padding: var(--spacing-none);
+  margin: var(--spacing-none);
 
   background: none;
   cursor: pointer;
