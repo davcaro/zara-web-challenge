@@ -5,12 +5,10 @@ import { SearchInput } from '@/components/SearchInput';
 import { PropTypes } from './SearchBar.types';
 import { Container, StyledResultsCount } from './SearchBar.styles';
 
-const DEBOUNCE_TIME = 300;
-
-export const SearchBar: FC<PropTypes> = ({ value, onSearch, results, ...props }) => {
+export const SearchBar: FC<PropTypes> = ({ value, onSearch, debounceTime = 0, results, ...props }) => {
   const { t } = useTranslation('search');
   const [inputValue, setInputValue] = useState<string>(value);
-  const debouncedSearchValue = useDebounce(inputValue, DEBOUNCE_TIME);
+  const debouncedSearchValue = useDebounce(inputValue, debounceTime);
 
   // Update input value when the prop changes. E.g. when the user navigates using the Logo in the header.
   useEffect(() => {

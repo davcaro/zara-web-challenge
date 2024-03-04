@@ -7,6 +7,7 @@ import { CharactersGrid } from '@/components/CharactersGrid';
 import { Container, StyledSearchBar } from './CharactersList.styles';
 
 const PAGE_SIZE = 50;
+const DEBOUNCE_TIME = 300;
 const SEARCH_QUERY_PARAM = 'q';
 
 export const CharactersList: FC = () => {
@@ -36,7 +37,12 @@ export const CharactersList: FC = () => {
       </Helmet>
 
       <Container>
-        <StyledSearchBar value={searchQuery} onSearch={handleSearch} results={characters?.count} />
+        <StyledSearchBar
+          value={searchQuery}
+          onSearch={handleSearch}
+          debounceTime={DEBOUNCE_TIME}
+          results={characters?.count}
+        />
         {isSuccess && <CharactersGrid characters={characters.results} />}
       </Container>
     </>
