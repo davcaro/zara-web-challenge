@@ -4,7 +4,7 @@ import { FavoriteCharactersContextProps } from './FavoriteCharactersContext.type
 
 export const FavoriteCharactersContext = createContext<FavoriteCharactersContextProps | undefined>(undefined);
 
-export const FavoriteCharactersProvider: FC<PropsWithChildren> = ({ children }) => {
+export const FavoriteCharactersProvider: FC<PropsWithChildren> = ({ children, ...props }) => {
   const [favorites, setFavorites] = useState<Character[]>([]);
 
   const addFavorite = (character: Character) => setFavorites((prev) => [...prev, character]);
@@ -14,7 +14,10 @@ export const FavoriteCharactersProvider: FC<PropsWithChildren> = ({ children }) 
   const isFavorite = (id: number) => favorites.some((favorite) => favorite.id === id);
 
   return (
-    <FavoriteCharactersContext.Provider value={{ favorites, addFavorite, removeFavorite, toggleFavorite, isFavorite }}>
+    <FavoriteCharactersContext.Provider
+      value={{ favorites, addFavorite, removeFavorite, toggleFavorite, isFavorite }}
+      {...props}
+    >
       {children}
     </FavoriteCharactersContext.Provider>
   );
