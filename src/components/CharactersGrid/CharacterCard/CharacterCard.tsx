@@ -1,17 +1,16 @@
 import { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useFavoriteCharacters } from '@/stores/FavoriteCharactersContext';
 import { Character } from '@/types';
-import { HeartFilledIcon, HeartOutlinedIcon } from '@/assets';
-import { ICON_SIZE } from '@/components/Icon';
 import { CharacterInfo, CharacterName, Divider, StyledIconButton, StyledLink, Thumbnail } from './CharacterCard.styles';
+import HeartFilledIcon from '@/assets/heart_filled.svg?react';
+import HeartOutlinedIcon from '@/assets/heart_outlined.svg?react';
+import { ICON_SIZE } from '@/components/IconButton/IconButton.types';
 
 interface PropTypes {
   character: Character;
 }
 
 export const CharacterCard: FC<PropTypes> = ({ character }) => {
-  const { t } = useTranslation('characters');
   const { toggleFavorite, isFavorite } = useFavoriteCharacters();
 
   return (
@@ -22,7 +21,6 @@ export const CharacterCard: FC<PropTypes> = ({ character }) => {
         <CharacterName level='p2'>{character.name}</CharacterName>
         <StyledIconButton
           icon={isFavorite(character.id) ? HeartFilledIcon : HeartOutlinedIcon}
-          alt={isFavorite(character.id) ? t('remove-favorite') : t('add-favorite')}
           size={ICON_SIZE.SMALL}
           onClick={() => toggleFavorite(character)}
         />

@@ -1,11 +1,13 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, MouseEvent } from 'react';
-import { ICON_SIZE } from '@/components/Icon';
+import { ButtonHTMLAttributes, DetailedHTMLProps, FunctionComponent, MouseEvent, SVGProps } from 'react';
+
+export enum ICON_SIZE {
+  SMALL = 'small',
+  MEDIUM = 'medium',
+  LARGE = 'large',
+}
 
 export type PropTypes = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> & {
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
-
-  /* Icon component props */
-  icon: string;
-  alt?: string;
+  icon: FunctionComponent<SVGProps<SVGSVGElement>>;
   size?: ICON_SIZE;
 };
