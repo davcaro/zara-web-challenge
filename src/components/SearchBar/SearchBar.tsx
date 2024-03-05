@@ -12,7 +12,7 @@ export const SearchBar: FC<PropTypes> = ({ value, onSearch, debounceTime = 0, re
 
   // Update input value when the prop changes. E.g. when the user navigates using the Logo in the header.
   useEffect(() => {
-    setInputValue(value ?? '');
+    setInputValue(value);
   }, [value]);
 
   useEffect(() => {
