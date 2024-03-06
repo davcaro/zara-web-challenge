@@ -8,6 +8,8 @@ import { PageError } from '@/components/PageError';
 import { CharacterInfo } from './CharacterInfo';
 import { CharacterComics } from './CharacterComics';
 
+const PAGE_SIZE = 20;
+
 export const CharacterDetails: FC = () => {
   const { t } = useTranslation('common');
   const { id } = useParams();
@@ -16,7 +18,7 @@ export const CharacterDetails: FC = () => {
     isSuccess: isSuccessCharacter,
     isLoading: isLoadingCharacter,
   } = useFetchCharacterDetails(id);
-  const { data: comics, isSuccess: isSuccessComics } = useFetchCharacterComics(id);
+  const { data: comics, isSuccess: isSuccessComics } = useFetchCharacterComics(id, { limit: PAGE_SIZE });
 
   if (isSuccessCharacter) {
     return (
