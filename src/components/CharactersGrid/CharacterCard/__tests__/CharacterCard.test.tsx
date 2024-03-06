@@ -20,17 +20,16 @@ describe('CharacterCard', () => {
   });
 
   it('should add and remove the character from favorites', async () => {
-    const { getByRole } = render(<CharacterCard character={mockCharacter} />);
+    const { getByRole, getByTitle } = render(<CharacterCard character={mockCharacter} />);
 
     const favoriteButton = getByRole('button');
-    const favoriteIcon = getByRole('img', { name: 'add-favorite' });
 
-    expect(favoriteIcon).toHaveAttribute('alt', 'add-favorite');
-
-    await user.click(favoriteButton);
-    expect(favoriteIcon).toHaveAttribute('alt', 'remove-favorite');
+    expect(getByTitle('Not favorite')).toBeInTheDocument();
 
     await user.click(favoriteButton);
-    expect(favoriteIcon).toHaveAttribute('alt', 'add-favorite');
+    expect(getByTitle('Favorite')).toBeInTheDocument();
+
+    await user.click(favoriteButton);
+    expect(getByTitle('Not favorite')).toBeInTheDocument();
   });
 });

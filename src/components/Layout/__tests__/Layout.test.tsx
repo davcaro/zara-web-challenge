@@ -6,16 +6,15 @@ import { Layout } from '../Layout';
 
 describe('Layout', () => {
   it('should render the marvel logo with a link to home', () => {
-    const { getByRole } = render(<Layout />);
+    const { getByTitle, getAllByRole } = render(<Layout />);
 
-    const logoLink = getByRole('link', { name: 'marvel-logo' });
+    const logoLink = getAllByRole('link')[0];
     expect(logoLink).toHaveAttribute('href', '/');
 
-    const logoImage = getByRole('img', { name: 'marvel-logo' });
-    expect(logoImage).toHaveAttribute('alt', 'marvel-logo');
+    expect(getByTitle('Marvel Logo')).toBeInTheDocument();
   });
 
-  it('should favorites count and a link to favorites page', () => {
+  it('should render favorites count and a link to favorites page', () => {
     const mockFavoritesContextValue: FavoriteCharactersContextProps = {
       favorites: mockCharactersList.data.results,
       addFavorite: vi.fn(),
@@ -23,14 +22,13 @@ describe('Layout', () => {
       toggleFavorite: vi.fn(),
       isFavorite: vi.fn(),
     };
-    const { getByRole, getByText, getAllByRole } = render(<Layout />, { favoritesContext: mockFavoritesContextValue });
+    const { getByText, getByTitle, getAllByRole } = render(<Layout />, { favoritesContext: mockFavoritesContextValue });
 
     expect(getByText(mockFavoritesContextValue.favorites.length)).toBeInTheDocument();
 
     const favoritesLink = getAllByRole('link')[1];
     expect(favoritesLink).toHaveAttribute('href', '/favorites');
 
-    const favoritesImage = getByRole('img', { name: 'favorite-characters' });
-    expect(favoritesImage).toHaveAttribute('alt', 'favorite-characters');
+    expect(getByTitle('Favorite')).toBeInTheDocument();
   });
 });
