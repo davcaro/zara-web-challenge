@@ -3,7 +3,7 @@ import * as media from '@/theme/media-queries.ts';
 import typography from '@/theme/typography.styles';
 import { Text } from '@/components/Text';
 
-export const StyledHeader = styled.header`
+export const StyledSection = styled.section`
   display: flex;
   width: 100%;
   position: relative;

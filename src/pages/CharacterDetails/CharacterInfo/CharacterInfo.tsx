@@ -5,13 +5,13 @@ import HeartOutlinedIcon from '@/assets/heart_outlined.svg?react';
 import { Text } from '@/components/Text';
 import { IconButton } from '@/components/IconButton';
 import { PropTypes } from './CharacterInfo.types';
-import { StyledHeader, Image, Resume, Container, StyledHeading, Wrapper } from './CharacterInfo.styles';
+import { StyledSection, Image, Resume, Container, StyledHeading, Wrapper } from './CharacterInfo.styles';
 
 export const CharacterInfo: FC<PropTypes> = ({ character }) => {
   const { toggleFavorite, isFavorite } = useFavoriteCharacters();
 
   return (
-    <StyledHeader>
+    <StyledSection>
       <Container>
         <Image src={`${character.thumbnail.path}.${character.thumbnail.extension}`} alt={character.name} />
 
@@ -26,6 +26,6 @@ export const CharacterInfo: FC<PropTypes> = ({ character }) => {
           <Text level='p1'>{character.description}</Text>
         </Resume>
       </Container>
-    </StyledHeader>
+    </StyledSection>
   );
 };
