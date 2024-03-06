@@ -21,6 +21,30 @@ export const Divider = styled.hr`
   background-color: var(--colors-marvel-red);
 `;
 
+export const AnimatedContainer = styled.div`
+  height: 0;
+  transition: height 400ms ease-in-out;
+  background-color: var(--colors-marvel-red);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+`;
+
+export const CharacterName = styled(Text)`
+  color: var(--colors-white);
+  z-index: 1;
+`;
+
+export const StyledIconButton = styled(IconButton)`
+  z-index: 1;
+
+  & svg path {
+    transition: fill 400ms ease-in-out;
+  }
+`;
+
 export const CharacterInfo = styled.section`
   display: flex;
   justify-content: space-between;
@@ -31,12 +55,20 @@ export const CharacterInfo = styled.section`
   background-color: var(--colors-black);
 
   box-sizing: border-box;
-  padding: var(--spacing-16) var(--spacing-8) var(--spacing-24) var(--spacing-16);
+  padding: var(--spacing-16) var(--spacing-16) var(--spacing-24) var(--spacing-16);
+
+  &:hover ${AnimatedContainer} {
+    height: 100%;
+  }
+  &:hover ${StyledIconButton} svg path {
+    fill: var(--colors-white);
+  }
 
   /* Notched corner */
   &:after {
     content: '';
     position: absolute;
+    z-index: 1;
     background-color: var(--colors-white);
 
     width: 1.2rem;
@@ -45,12 +77,4 @@ export const CharacterInfo = styled.section`
     bottom: -0.6rem;
     transform: rotate(45deg);
   }
-`;
-
-export const CharacterName = styled(Text)`
-  color: var(--colors-white);
-`;
-
-export const StyledIconButton = styled(IconButton)`
-  padding: var(--spacing-8);
 `;
