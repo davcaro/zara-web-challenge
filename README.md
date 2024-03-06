@@ -1,30 +1,58 @@
-# React + TypeScript + Vite
+# ZARA WEB CHALLENGE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Application to view and search for Marvel characters for the Zara Front-end coding challenge by David Caro Gallego.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The project has been developed with NodeJS v20.11.1
 
-## Expanding the ESLint configuration
+Use pnpm package manager to install the necessary dependencies.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+pnpm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Scripts
+
+Run the application in development mode
+
+```bash
+pnpm run dev
+```
+
+Generate a production build
+
+```bash
+pnpm run build
+```
+
+Locally preview the production build
+
+```bash
+pnpm run preview
+```
+
+## Coding challenge Requirements
+
+The test consists of a web application to view and search for Marvel characters. The application should have three screens:
+
+- **Main screen**: It must display the list of the first 50 Marvel characters, allow searching by name (managed by API) and add characters to favorites.
+- **Favorites screen**: It must show the list of characters that the user has added to favorites and allow searching by name.
+- **Character details screen**: It must show all the information about the character and the list of comics in which it appears and allow to add the character to favorites.
+
+It must also have a header that allows navigating to the main screen and the favorites screen, as well as displaying a counter of the characters saved in favorites.<br/>
+In addition, it is required to implement tests to check the correct behavior of the application, to have a responsive design and to have a correct accessibility.
+
+## Dependencies
+
+- [Vite](https://vitejs.dev) used to generate the initial structure of the project.
+- [Vitest](https://vitest.dev) + [React Testing Library](https://testing-library.com/docs/react-testing-library/intro) to write and run the unit tests.
+- [React Router](https://reactrouter.com) to manage the different routes of the application.
+- [Tanstack Query](https://tanstack.com/query) + [Axios](https://axios-http.com) to make the necessary API calls, manage their state and store the information received in cache.
+- [Fuse](https://fusejs.io) for fuzzy searching of characters by name in the favorites screen.
+
+## Result
+
+![Characters list](./public/readme-assets/characters-list.png)
+![Favorite characters](./public/readme-assets/favorites-list.png)
+![Character details](./public/readme-assets/character-details.png)
