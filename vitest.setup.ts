@@ -1,4 +1,5 @@
 import { afterAll, afterEach, beforeAll } from 'vitest';
+import { cleanup } from '@testing-library/react';
 import { server } from './src/test/mocks/node';
 
 beforeAll(() => {
@@ -7,6 +8,7 @@ beforeAll(() => {
 
 afterEach(() => {
   server.resetHandlers();
+  cleanup();
 });
 
 afterAll(() => {
