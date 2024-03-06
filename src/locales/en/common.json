@@ -2,5 +2,6 @@
   "app-title": "Marvel Characters",
   "prefixed-app-title": "{{prefix}} - $t(app-title)",
   "marvel-logo": "Marvel logo",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "error": "An error has occurred"
 }

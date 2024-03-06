@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useFetchCharacters } from '@/hooks/api';
+import { PageError } from '@/components/PageError';
 import { CharactersGrid } from '@/components/CharactersGrid';
 import { Container, ProgressBar, StyledSearchBar } from './CharactersList.styles';
 
@@ -18,8 +19,9 @@ export const CharactersList: FC = () => {
   const trimmedSearch = search.trim();
   const {
     data: characters,
-    isSuccess,
     isFetching,
+    isSuccess,
+    isError,
   } = useFetchCharacters({
     nameStartsWith: trimmedSearch || null,
     limit: PAGE_SIZE,
@@ -49,7 +51,9 @@ export const CharactersList: FC = () => {
           debounceTime={DEBOUNCE_TIME}
           results={characters?.count}
         />
+
         {isSuccess && <CharactersGrid characters={characters.results} />}
+        {isError && <PageError />}
       </Container>
     </>
   );

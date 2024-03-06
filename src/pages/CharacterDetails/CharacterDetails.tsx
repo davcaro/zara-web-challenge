@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useFetchCharacterComics, useFetchCharacterDetails } from '@/hooks/api';
 import { PageLoader } from '@/components/PageLoader';
+import { PageError } from '@/components/PageError';
 import { CharacterInfo } from './CharacterInfo';
 import { CharacterComics } from './CharacterComics';
 
@@ -34,5 +35,5 @@ export const CharacterDetails: FC = () => {
     return <PageLoader />;
   }
 
-  return null;
+  return <PageError />;
 };
