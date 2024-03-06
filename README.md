@@ -53,6 +53,8 @@ In addition, it is required to implement tests to check the correct behavior of 
 
 ## Result
 
+App is deployed at [https://davcaro-zara-web-challenge.netlify.app](https://davcaro-zara-web-challenge.netlify.app) 🎉
+
 ![Characters list](./public/readme-assets/characters-list.png)
 ![Favorite characters](./public/readme-assets/favorites-list.png)
 ![Character details](./public/readme-assets/character-details.png)
