@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useFetchCharacters } from '@/hooks/api';
 import { CharactersGrid } from '@/components/CharactersGrid';
-import { Container, StyledSearchBar } from './CharactersList.styles';
+import { Container, ProgressBar, StyledSearchBar } from './CharactersList.styles';
 
 const PAGE_SIZE = 50;
 const DEBOUNCE_TIME = 300;
@@ -16,7 +16,11 @@ export const CharactersList: FC = () => {
   const searchQuery = searchParams.get(SEARCH_QUERY_PARAM) ?? '';
   const [search, setSearch] = useState<string>(searchQuery);
   const trimmedSearch = search.trim();
-  const { data: characters, isSuccess } = useFetchCharacters({
+  const {
+    data: characters,
+    isSuccess,
+    isFetching,
+  } = useFetchCharacters({
     nameStartsWith: trimmedSearch || null,
     limit: PAGE_SIZE,
   });
@@ -37,6 +41,8 @@ export const CharactersList: FC = () => {
       </Helmet>
 
       <Container>
+        <ProgressBar loading={isFetching} />
+
         <StyledSearchBar
           value={searchQuery}
           onSearch={handleSearch}

@@ -3,13 +3,18 @@ import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useFetchCharacterComics, useFetchCharacterDetails } from '@/hooks/api';
+import { PageLoader } from '@/components/PageLoader';
 import { CharacterInfo } from './CharacterInfo';
 import { CharacterComics } from './CharacterComics';
 
 export const CharacterDetails: FC = () => {
   const { t } = useTranslation('common');
   const { id } = useParams();
-  const { data: character, isSuccess: isSuccessCharacter } = useFetchCharacterDetails(id);
+  const {
+    data: character,
+    isSuccess: isSuccessCharacter,
+    isLoading: isLoadingCharacter,
+  } = useFetchCharacterDetails(id);
   const { data: comics, isSuccess: isSuccessComics } = useFetchCharacterComics(id);
 
   if (isSuccessCharacter) {
@@ -20,9 +25,13 @@ export const CharacterDetails: FC = () => {
         </Helmet>
 
         <CharacterInfo character={character} />
-        {isSuccessComics && <CharacterComics comics={comics} />}
+        {isSuccessComics && !!comics.length && <CharacterComics comics={comics} />}
       </>
     );
+  }
+
+  if (isLoadingCharacter) {
+    return <PageLoader />;
   }
 
   return null;
