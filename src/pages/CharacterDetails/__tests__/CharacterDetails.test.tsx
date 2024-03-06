@@ -1,25 +1,32 @@
-import { describe, expect, it, vi } from 'vitest';
-import { waitFor } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+import { waitForElementToBeRemoved } from '@testing-library/react';
+import { Route, Routes } from 'react-router-dom';
 import { render, user } from '@/test/testUtils';
 import { mockCharactersList } from '@/test/mocks/api-responses/characters-list';
 import { mockCharacterComics } from '@/test/mocks/api-responses/character-comics';
 import { Character } from '@/types';
 import { CharacterDetails } from '../CharacterDetails';
 
-vi.mock('react-router-dom', async () => ({
-  ...(await vi.importActual('react-router-dom')),
-  useParams: () => ({ id: 1 }),
-}));
+const renderComponent = (id = '1') =>
+  render(
+    <Routes>
+      <Route path='/:id' element={<CharacterDetails />} />
+    </Routes>,
+    { initialEntries: [`/${id}`] },
+  );
 
 describe('CharacterDetails', () => {
   const mockCharacterDetails: Character = mockCharactersList.data.results[0];
 
   it('should render the character details', async () => {
-    const { getByRole, getByText, findByText } = render(<CharacterDetails />);
+    const { getByRole, getByText, queryByText } = renderComponent();
 
-    await waitFor(() => expect(document.title).toBe('prefixed-app-title'));
+    expect(getByText('loading')).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => queryByText('loading'));
 
-    expect(await findByText(mockCharacterDetails.name)).toBeInTheDocument();
+    expect(document.title).toBe('prefixed-app-title');
+
+    expect(getByText(mockCharacterDetails.name)).toBeInTheDocument();
     expect(getByText(mockCharacterDetails.description)).toBeInTheDocument();
 
     const thumbnail = getByRole('img', { name: mockCharacterDetails.name });
@@ -31,7 +38,7 @@ describe('CharacterDetails', () => {
 
   it('should render the character comics', async () => {
     const comics = mockCharacterComics.data.results;
-    const { getByRole, getByText, getAllByText, findByText } = render(<CharacterDetails />);
+    const { getByRole, getByText, getAllByText, findByText } = renderComponent();
 
     expect(getByText('comics')).toBeInTheDocument();
 
@@ -49,7 +56,7 @@ describe('CharacterDetails', () => {
   });
 
   it('should add and remove the character from favorites', async () => {
-    const { getByRole, getByTitle } = render(<CharacterDetails />);
+    const { getByRole, getByTitle } = renderComponent();
 
     const favoriteButton = getByRole('button');
 
@@ -60,5 +67,11 @@ describe('CharacterDetails', () => {
 
     await user.click(favoriteButton);
     expect(getByTitle('Not favorite')).toBeInTheDocument();
+  });
+
+  it('should handle api errors', async () => {
+    const { findByText } = renderComponent('404');
+
+    expect(await findByText('error')).toBeInTheDocument();
   });
 });

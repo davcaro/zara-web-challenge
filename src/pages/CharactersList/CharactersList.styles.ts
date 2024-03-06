@@ -13,7 +13,7 @@ export const Container = styled.main`
   }
 `;
 
-export const ProgressBar = styled.hr<{ loading: boolean }>`
+export const ProgressBar = styled.hr<{ loading: string }>`
   position: absolute;
   top: 0;
   left: 0;
@@ -25,7 +25,7 @@ export const ProgressBar = styled.hr<{ loading: boolean }>`
   transition: width 400ms ease-in-out;
 
   ${({ loading }) =>
-    loading &&
+    loading === 'true' &&
     css`
       width: 100%;
     `}

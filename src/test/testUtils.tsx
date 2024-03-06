@@ -5,7 +5,7 @@ import type { RenderOptions } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter, MemoryRouterProps } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
 import { FavoriteCharactersContextProps, FavoriteCharactersProvider } from '@/stores/FavoriteCharactersContext';
@@ -19,9 +19,16 @@ i18n.use(initReactI18next).init({
   },
 });
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
 
 export interface ProviderOptions extends RenderOptions {
+  initialEntries?: MemoryRouterProps['initialEntries'];
   favoritesContext?: FavoriteCharactersContextProps;
 }
 
@@ -29,23 +36,25 @@ interface ProvidersProps extends ProviderOptions {
   children: React.ReactNode;
 }
 
-const Providers = ({ favoritesContext, children }: ProvidersProps) => (
+const Providers = ({ initialEntries = ['/'], favoritesContext, children }: ProvidersProps) => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <FavoriteCharactersProvider {...(favoritesContext ? { value: favoritesContext } : {})}>
-          {children}
-        </FavoriteCharactersProvider>
-      </BrowserRouter>
+      <FavoriteCharactersProvider {...(favoritesContext ? { value: favoritesContext } : {})}>
+        <MemoryRouter initialEntries={initialEntries}>{children}</MemoryRouter>
+      </FavoriteCharactersProvider>
     </QueryClientProvider>
   </HelmetProvider>
 );
 
 const renderWithProviders = (ui: React.ReactElement, options: ProviderOptions = {}) => {
-  const { favoritesContext, ...rest } = options;
+  const { initialEntries, favoritesContext, ...rest } = options;
 
   const rtl = render(ui, {
-    wrapper: ({ children }) => <Providers favoritesContext={favoritesContext}>{children}</Providers>,
+    wrapper: ({ children }) => (
+      <Providers initialEntries={initialEntries} favoritesContext={favoritesContext}>
+        {children}
+      </Providers>
+    ),
     ...rest,
   });
 

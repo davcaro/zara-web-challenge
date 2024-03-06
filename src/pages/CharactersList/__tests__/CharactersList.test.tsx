@@ -28,12 +28,19 @@ describe('CharactersList', () => {
   it('should update the app title', async () => {
     const { getByRole } = render(<CharactersList />);
 
-    const searchInput = getByRole('searchbox');
-    await user.clear(searchInput);
-
     await waitFor(() => expect(document.title).toBe('app-title'));
 
+    const searchInput = getByRole('searchbox');
     await user.type(searchInput, 'spider');
     await waitFor(() => expect(document.title).toBe('prefixed-app-title'));
+  });
+
+  it('should handle api errors', async () => {
+    const { getByRole, findByText } = render(<CharactersList />);
+
+    const searchInput = getByRole('searchbox');
+    await user.type(searchInput, 'Throw an error');
+
+    expect(await findByText('error')).toBeInTheDocument();
   });
 });

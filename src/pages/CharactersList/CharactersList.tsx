@@ -43,7 +43,7 @@ export const CharactersList: FC = () => {
       </Helmet>
 
       <Container>
-        <ProgressBar loading={isFetching} />
+        <ProgressBar loading={isFetching ? 'true' : 'false'} />
 
         <StyledSearchBar
           value={searchQuery}

@@ -11,13 +11,19 @@ export const handlers: HttpHandler[] = [
     const nameStartsWith = url.searchParams.get('nameStartsWith');
 
     if (nameStartsWith) {
+      const foundResults = mockCharactersList.data.results.filter((character) =>
+        character.name.toLowerCase().includes(nameStartsWith.toLowerCase()),
+      );
+
+      if (foundResults.length === 0) {
+        return new HttpResponse(null, { status: 404 });
+      }
+
       return HttpResponse.json({
         ...mockCharactersList,
         data: {
           ...mockCharactersList.data,
-          results: mockCharactersList.data.results.filter((character) =>
-            character.name.toLowerCase().includes(nameStartsWith.toLowerCase()),
-          ),
+          results: foundResults,
         },
       });
     }
@@ -27,8 +33,6 @@ export const handlers: HttpHandler[] = [
   http.get(`${API_URL}/${API_ENDPOINTS.CHARACTERS}/:id`, ({ params }) => {
     const characterId = params.id;
     const character = mockCharactersList.data.results.find((character) => character.id === Number(characterId));
-
-    console.log('character', character);
 
     if (!character) {
       return new HttpResponse(null, { status: 404 });
@@ -42,7 +46,7 @@ export const handlers: HttpHandler[] = [
       },
     });
   }),
-  http.get(`${API_URL}/${API_ENDPOINTS.CHARACTERS}/1/${API_ENDPOINTS.CHARACTER_COMICS}`, () =>
+  http.get(`${API_URL}/${API_ENDPOINTS.CHARACTERS}/:id/${API_ENDPOINTS.CHARACTER_COMICS}`, () =>
     HttpResponse.json(mockCharacterComics),
   ),
 ];
