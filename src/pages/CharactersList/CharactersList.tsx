@@ -49,7 +49,7 @@ export const CharactersList: FC = () => {
           value={searchQuery}
           onSearch={handleSearch}
           debounceTime={DEBOUNCE_TIME}
-          results={characters?.count}
+          results={characters?.total}
         />
 
         {isSuccess && <CharactersGrid characters={characters.results} />}
