@@ -3,9 +3,15 @@ import { Link } from 'react-router-dom';
 import { Text } from '@/components/Text';
 import { IconButton } from '@/components/IconButton';
 
+export const StyledLi = styled.li`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const StyledLink = styled(Link)`
   display: flex;
   flex-direction: column;
+  flex: 1;
   text-decoration: none;
 `;
 

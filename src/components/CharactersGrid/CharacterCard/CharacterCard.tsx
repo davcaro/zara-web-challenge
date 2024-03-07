@@ -11,6 +11,7 @@ import {
   CharacterName,
   Divider,
   StyledIconButton,
+  StyledLi,
   StyledLink,
   Thumbnail,
 } from './CharacterCard.styles';
@@ -24,7 +25,7 @@ export const CharacterCard: FC<PropTypes> = ({ character }) => {
   const { toggleFavorite, isFavorite } = useFavoriteCharacters();
 
   return (
-    <li>
+    <StyledLi>
       <StyledLink to={`/characters/${character.id}`}>
         <Thumbnail
           src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
@@ -41,6 +42,6 @@ export const CharacterCard: FC<PropTypes> = ({ character }) => {
           />
         </CharacterInfo>
       </StyledLink>
-    </li>
+    </StyledLi>
   );
 };
