@@ -24,21 +24,23 @@ export const CharacterCard: FC<PropTypes> = ({ character }) => {
   const { toggleFavorite, isFavorite } = useFavoriteCharacters();
 
   return (
-    <StyledLink to={`/characters/${character.id}`}>
-      <Thumbnail
-        src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-        alt={t('character-thumbnail', { name: character.name })}
-      />
-      <Divider />
-      <CharacterInfo>
-        <AnimatedContainer />
-        <CharacterName level='p2'>{character.name}</CharacterName>
-        <StyledIconButton
-          icon={isFavorite(character.id) ? HeartFilledIcon : HeartOutlinedIcon}
-          size={ICON_SIZE.SMALL}
-          onClick={() => toggleFavorite(character)}
+    <li>
+      <StyledLink to={`/characters/${character.id}`}>
+        <Thumbnail
+          src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+          alt={t('character-thumbnail', { name: character.name })}
         />
-      </CharacterInfo>
-    </StyledLink>
+        <Divider />
+        <CharacterInfo>
+          <AnimatedContainer />
+          <CharacterName level='p2'>{character.name}</CharacterName>
+          <StyledIconButton
+            icon={isFavorite(character.id) ? HeartFilledIcon : HeartOutlinedIcon}
+            size={ICON_SIZE.SMALL}
+            onClick={() => toggleFavorite(character)}
+          />
+        </CharacterInfo>
+      </StyledLink>
+    </li>
   );
 };

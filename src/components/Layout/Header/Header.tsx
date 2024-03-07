@@ -1,10 +1,12 @@
-import { StyledHeader } from './Header.styles';
+import { StyledNav } from './Header.styles';
 import { LogoNavLink } from './LogoNavLink';
 import { FavoritesNavLink } from './FavoritesNavLink';
 
 export const Header = () => (
-  <StyledHeader>
-    <LogoNavLink />
-    <FavoritesNavLink />
-  </StyledHeader>
+  <header>
+    <StyledNav>
+      <LogoNavLink />
+      <FavoritesNavLink />
+    </StyledNav>
+  </header>
 );

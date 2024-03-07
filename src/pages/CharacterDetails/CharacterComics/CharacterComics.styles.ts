@@ -3,13 +3,13 @@ import * as media from '@/theme/media-queries';
 import typography from '@/theme/typography.styles';
 import { Text } from '@/components/Text';
 
-export const Container = styled.main`
+export const StyledSection = styled.section`
   display: flex;
   justify-content: center;
   padding: var(--spacing-48) var(--spacing-none) var(--spacing-24);
 `;
 
-export const Wrapper = styled.section`
+export const Container = styled.div`
   width: 100%;
 
   ${media.gteMediumMedia} {

@@ -27,8 +27,12 @@ export const CharacterDetails: FC = () => {
           <title>{t('prefixed-app-title', { prefix: character?.name })}</title>
         </Helmet>
 
-        <CharacterInfo character={character} />
-        {isSuccessComics && !!comics.length && <CharacterComics comics={comics} />}
+        <main>
+          <article>
+            <CharacterInfo character={character} />
+            {isSuccessComics && !!comics.length && <CharacterComics comics={comics} />}
+          </article>
+        </main>
       </>
     );
   }

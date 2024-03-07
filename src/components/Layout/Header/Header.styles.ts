@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as media from '@/theme/media-queries';
 
-export const StyledHeader = styled.header`
+export const StyledNav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;

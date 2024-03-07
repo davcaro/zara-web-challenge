@@ -3,7 +3,7 @@ import * as media from '@/theme/media-queries.ts';
 import typography from '@/theme/typography.styles';
 import { Text } from '@/components/Text';
 
-export const StyledSection = styled.section`
+export const StyledHeader = styled.header`
   display: flex;
   width: 100%;
   position: relative;
@@ -28,7 +28,7 @@ export const StyledSection = styled.section`
   }
 `;
 
-export const Container = styled.header`
+export const Container = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
