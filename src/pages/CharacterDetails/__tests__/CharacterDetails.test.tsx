@@ -29,7 +29,7 @@ describe('CharacterDetails', () => {
     expect(getByText(mockCharacterDetails.name)).toBeInTheDocument();
     expect(getByText(mockCharacterDetails.description)).toBeInTheDocument();
 
-    const thumbnail = getByRole('img', { name: mockCharacterDetails.name });
+    const thumbnail = getByRole('img', { name: 'character-thumbnail' });
     expect(thumbnail).toHaveAttribute(
       'src',
       `${mockCharacterDetails.thumbnail.path}.${mockCharacterDetails.thumbnail.extension}`,
@@ -38,35 +38,35 @@ describe('CharacterDetails', () => {
 
   it('should render the character comics', async () => {
     const comics = mockCharacterComics.data.results;
-    const { getByRole, getByText, getAllByText, findByText } = renderComponent();
+    const { getByText, getAllByRole, getAllByText, findByText } = renderComponent();
 
     expect(getByText('comics')).toBeInTheDocument();
 
     expect(await findByText(comics[0].title)).toBeInTheDocument();
 
-    for (const comic of comics) {
+    comics.forEach((comic, index) => {
       expect(getByText(comic.title)).toBeInTheDocument();
 
-      const thumbnail = getByRole('img', { name: comic.title });
+      const thumbnail = getAllByRole('img', { name: 'comic-thumbnail' })[index];
       expect(thumbnail).toHaveAttribute('src', `${comic.thumbnail.path}.${comic.thumbnail.extension}`);
-    }
+    });
 
     // Release years
     expect(getAllByText('2023')).toHaveLength(comics.length);
   });
 
   it('should add and remove the character from favorites', async () => {
-    const { getByRole, getByTitle } = renderComponent();
+    const { getByRole, getByLabelText } = renderComponent();
 
     const favoriteButton = getByRole('button');
 
-    expect(getByTitle('Not favorite')).toBeInTheDocument();
+    expect(getByLabelText('Not favorite')).toBeInTheDocument();
 
     await user.click(favoriteButton);
-    expect(getByTitle('Favorite')).toBeInTheDocument();
+    expect(getByLabelText('Favorite')).toBeInTheDocument();
 
     await user.click(favoriteButton);
-    expect(getByTitle('Not favorite')).toBeInTheDocument();
+    expect(getByLabelText('Not favorite')).toBeInTheDocument();
   });
 
   it('should handle api errors', async () => {

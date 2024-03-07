@@ -12,24 +12,24 @@ describe('CharacterCard', () => {
 
     expect(getByRole('link')).toHaveAttribute('href', `/characters/${mockCharacter.id}`);
 
-    const thumbnail = getByRole('img', { name: mockCharacter.name });
+    const thumbnail = getByRole('img', { name: 'character-thumbnail' });
     expect(thumbnail).toHaveAttribute('src', `${mockCharacter.thumbnail.path}.${mockCharacter.thumbnail.extension}`);
-    expect(thumbnail).toHaveAttribute('alt', mockCharacter.name);
+    expect(thumbnail).toHaveAttribute('alt', 'character-thumbnail');
 
     expect(getByText(mockCharacter.name)).toBeInTheDocument();
   });
 
   it('should add and remove the character from favorites', async () => {
-    const { getByRole, getByTitle } = render(<CharacterCard character={mockCharacter} />);
+    const { getByRole, getByLabelText } = render(<CharacterCard character={mockCharacter} />);
 
     const favoriteButton = getByRole('button');
 
-    expect(getByTitle('Not favorite')).toBeInTheDocument();
+    expect(getByLabelText('Not favorite')).toBeInTheDocument();
 
     await user.click(favoriteButton);
-    expect(getByTitle('Favorite')).toBeInTheDocument();
+    expect(getByLabelText('Favorite')).toBeInTheDocument();
 
     await user.click(favoriteButton);
-    expect(getByTitle('Not favorite')).toBeInTheDocument();
+    expect(getByLabelText('Not favorite')).toBeInTheDocument();
   });
 });
