@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useFavoriteCharacters } from '@/stores/FavoriteCharactersContext';
 import { Character } from '@/types';
 import HeartFilledIcon from '@/assets/heart_filled.svg?react';
@@ -19,11 +20,15 @@ interface PropTypes {
 }
 
 export const CharacterCard: FC<PropTypes> = ({ character }) => {
+  const { t } = useTranslation('characters');
   const { toggleFavorite, isFavorite } = useFavoriteCharacters();
 
   return (
     <StyledLink to={`/characters/${character.id}`}>
-      <Thumbnail src={`${character.thumbnail.path}.${character.thumbnail.extension}`} alt={character.name} />
+      <Thumbnail
+        src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+        alt={t('character-thumbnail', { name: character.name })}
+      />
       <Divider />
       <CharacterInfo>
         <AnimatedContainer />

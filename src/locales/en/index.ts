@@ -1,9 +1,11 @@
 import common from './common.json';
-import characters from './characters.json';
 import search from './search.json';
+import characters from './characters.json';
+import comics from './comics.json';
 
 export default {
   common,
-  characters,
   search,
+  characters,
+  comics,
 };

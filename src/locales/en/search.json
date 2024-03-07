@@ -1,6 +1,7 @@
 {
   "search": "Search",
   "search-character": "Search a character...",
+  "search-character-by-name": "Search a character by name",
   "results_zero": "No results",
   "results_one": "{{ count }} result",
   "results_other": "{{ count }} results"

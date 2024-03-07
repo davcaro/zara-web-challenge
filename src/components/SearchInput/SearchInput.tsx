@@ -14,7 +14,13 @@ export const SearchInput: FC<PropTypes> = ({ value, onChange, ...props }) => {
   return (
     <InputWrapper {...props}>
       <SearchIcon />
-      <StyledInput type='search' placeholder={t('search-character')} value={value} onChange={handleChange} />
+      <StyledInput
+        type='search'
+        placeholder={t('search-character')}
+        aria-label={t('search-character-by-name')}
+        value={value}
+        onChange={handleChange}
+      />
     </InputWrapper>
   );
 };

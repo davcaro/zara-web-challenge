@@ -5,7 +5,7 @@ import { PropTypes } from './CharacterComics.types';
 import { Container, List, StyledHeading, Wrapper } from './CharacterComics.styles';
 
 export const CharacterComics: FC<PropTypes> = ({ comics }) => {
-  const { t } = useTranslation('characters');
+  const { t } = useTranslation('comics');
 
   return (
     <Container>
